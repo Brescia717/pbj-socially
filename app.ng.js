@@ -1,17 +1,24 @@
 Parties = new Mongo.Collection("parties");
 
 if (Meteor.isClient) {
-  angular.module('socially', ['angular-meteor']);
+  // These are the dependencies (similar to gems in Rails)
+  angular.module('socially', ['angular-meteor', 'ui.router']);
 
   angular.module('socially').controller('PartiesListCtrl', function ($scope, $meteor) {
+    // In Ruby, these would be methods
     $scope.parties = $meteor.collection(Parties);
 
     $scope.remove = function(party){
-      $scope.parties.splice($scope.parties.indexOf(party), 1);
+      $scope.parties.remove(party);
     };
+
+    $scope.removeAll = function(){
+      $scope.parties.remove();
+    }
   });
 }
 
+// What is run everytime the server boots
 if (Meteor.isServer) {
   Meteor.startup(function () {
     if (Parties.find().count() === 0) {
