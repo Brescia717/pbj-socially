@@ -1,8 +1,9 @@
 angular.module("socially").controller("PartyDetailsCtrl", function($scope, $stateParams, $meteor) {
+
   $scope.party = $meteor.object(Parties, $stateParams.partyId, false);
 
   var subscriptionHandle;
-  $meteor.subscribe('parties', function(handle) {
+  $meteor.subscribe('parties').then(function(handle) {
     subscriptionHandle = handle;
   });
 
