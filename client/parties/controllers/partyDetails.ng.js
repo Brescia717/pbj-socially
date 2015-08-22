@@ -1,6 +1,16 @@
 angular.module("socially").controller("PartyDetailsCtrl", function($scope, $stateParams, $meteor) {
-  $scope.party = $meteor.object(Parties, $stateParams.partyId, false).subscribe('parties');
+  $scope.party = $meteor.object(Parties, $stateParams.partyId, false);
+
+  var subscriptionHandle;
+  $meteor.subscribe('parties', function(handle) {
+    subscriptionHandle = handle;
+  });
+
   $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
+
+  $scope.$on('$destroy', function() {
+    subscriptionHandle.stop();
+  });
 
   $scope.save = function() {
     $scope.party.save().then(function(numberOfDocs){
