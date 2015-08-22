@@ -1,5 +1,10 @@
 // These are the dependencies (similar to Gemfile in Rails)
-angular.module('socially', ['angular-meteor', 'ui.router', 'angularUtils.directives.dirPagination']);
+angular.module('socially',[
+  'angular-meteor',
+  'ui.router',
+  'angularUtils.directives.dirPagination',
+  'uiGmapgoogle-maps'
+]);
 
 function onReady() {
   angular.bootstrap(document, ['socially']);
@@ -10,6 +15,6 @@ if (Meteor.isCordova)
 else
   angular.element(document).ready(onReady);
 
-Accounts.ui.config({
-  passwordSignupFields: "USERNAME_ONLY"
-});
+// Accounts.ui.config({
+//   passwordSignupFields: "USERNAME_ONLY"
+// });

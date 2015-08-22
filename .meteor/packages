@@ -13,3 +13,7 @@ accounts-facebook
 accounts-twitter
 tmeasday:publish-counts
 angularutils:pagination
+email
+angularui:angular-google-maps
+twbs:bootstrap
+less
